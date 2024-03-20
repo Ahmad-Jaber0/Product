@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block product_content %}
+{% if pro %}
+      <li><a href="{% url 'edit_product' 4 %}">Edit Product</a></li>
+      <li><a href="{% url 'delete_product' 4 %}">Delete Product</a></li>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <h1>Products</h1>
+    <div class="row">
+        {%for i in pro%}
+        <div class="col">
+
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ i.ing_url }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{i.name}}</h5>
+                  <p class="card-text">${{i.price}}</p>
+                  <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+  
+{% endblock %}
