@@ -3,7 +3,14 @@ from django.http import HttpResponse
 from .models import Product
 from .forms import ProductForm
 import requests
+from django.http.response import JsonResponse
 
+def no_rest_from_model(request):
+    data = Product.objects.all()
+    response = {
+        'Product': list(data.values())
+    }
+    return JsonResponse(response)
 
 def fahrenheit_to_celsius(fahrenheit): 
     celsius = (fahrenheit - 32) * (5.0/9.0) 
@@ -12,7 +19,7 @@ def fahrenheit_to_celsius(fahrenheit):
 
 def wether(request):
     api_url = 'http://api.openweathermap.org./data/2.5/weather?appid=0c42f7f6b53b244c78a418f4f181282a&q='
-    city_name="Nablus"
+    city_name="palestine"
     url=api_url+city_name
     response=requests.get(url)
     content=response.json()

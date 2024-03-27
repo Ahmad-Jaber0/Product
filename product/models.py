@@ -1,9 +1,10 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 class Product(models.Model):
     name=models.CharField(max_length=255)
-    price=models.FloatField()
-    stock=models.IntegerField()
+    price=models.FloatField(validators=[MinValueValidator(0)])
+    stock=models.IntegerField(validators=[MinValueValidator(0)])
     ing_url=models.CharField(max_length=2083)
 
     def __str__(self):
