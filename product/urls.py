@@ -1,7 +1,10 @@
-from django.urls import path
+from django.urls import path,include
 from . import views
 from django.contrib.auth import views as auth_views
+from rest_framework.routers import DefaultRouter
 
+router = DefaultRouter()
+router.register('Product', views.viewsets_Product)
 
 urlpatterns = [
     path('index/', views.index, name='index'), 
@@ -10,6 +13,7 @@ urlpatterns = [
     path('delete/<int:pk>/', views.delete_product, name='delete_product'),
     path('wether/', views.wether, name='wether'),
     path('no_rest_from_model/', views.no_rest_from_model, name='no_rest_from_model'),
-    path('rest/generics/', views.generics_list.as_view()),
+    path('rest/generics/', views.generics_list.as_view(),),
+    path('rest/viewsets/', include(router.urls)),
 
 ]

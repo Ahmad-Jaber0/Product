@@ -22,6 +22,11 @@ class generics_list(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+class viewsets_Product(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer 
+
+
 def fahrenheit_to_celsius(fahrenheit): 
     celsius = (fahrenheit - 32) * (5.0/9.0) 
     
