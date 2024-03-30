@@ -4,6 +4,12 @@ from .models import Product
 from .forms import ProductForm
 import requests
 from django.http.response import JsonResponse
+from django.contrib.auth import authenticate, login,logout
+from .serializers import *
+from rest_framework import generics, mixins, viewsets
+
+
+
 
 def no_rest_from_model(request):
     data = Product.objects.all()
@@ -12,6 +18,10 @@ def no_rest_from_model(request):
     }
     return JsonResponse(response)
 
+class generics_list(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
 def fahrenheit_to_celsius(fahrenheit): 
     celsius = (fahrenheit - 32) * (5.0/9.0) 
     
@@ -19,7 +29,7 @@ def fahrenheit_to_celsius(fahrenheit):
 
 def wether(request):
     api_url = 'http://api.openweathermap.org./data/2.5/weather?appid=0c42f7f6b53b244c78a418f4f181282a&q='
-    city_name="palestine"
+    city_name="Nablus"
     url=api_url+city_name
     response=requests.get(url)
     content=response.json()
