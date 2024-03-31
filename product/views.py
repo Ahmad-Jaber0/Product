@@ -22,6 +22,16 @@ def no_rest_from_model(request):
     }
     return JsonResponse(response)
 
+
+class mixins_list(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get(self, request):
+        return self.list(request)
+    def post(self, request):
+        return self.create(request)
+
 class mixins_pk(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -33,12 +43,13 @@ class mixins_pk(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.Destr
         return self.destroy(request)
 
 
-class generics_list(generics.ListCreateAPIView):
-    #authentication_classes = [BasicAuthentication]
-    #permission_classes = [IsAuthenticated]
+class generics_list(generics.ListCreateAPIView): 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+class generics_pk(generics.RetrieveUpdateDestroyAPIView):   
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 class viewsets_Product(viewsets.ModelViewSet):
     
