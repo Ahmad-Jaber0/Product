@@ -21,9 +21,7 @@
       <nav class="navbar navbar-dark bg-dark">
         <ul>
           <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="{% url 'AddProductAPIView' %}">Add Product</a></li>  
-          {% block product_content %}
-          {% endblock %}          
+          <li><a href="{% url 'add_product' %}">Add Product</a></li>          
       </ul>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

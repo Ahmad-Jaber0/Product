@@ -2,9 +2,42 @@
 
 {% block content %}
 
-<form method="post">
+<form id="product-form" method="post">
     {% csrf_token %}
-    {{ form }}
-    <button type="submit">Save Changes</button>
+    {{ form.as_p }}  
+    <button id="save-btn">Save</button>
 </form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    jQuery(document).ready(function($) {
+        console.log("Document ready!");
+
+        $('#save-btn').on('click', function(event) {
+            event.preventDefault();
+
+            console.log("Button clicked!");
+
+            var formData = $('#product-form').serialize();
+            console.log("Form data:", formData);
+
+            $.ajax({
+                url: "{% url 'edit_product' 0 %}".replace('0',{{pk}}),
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    console.log("Product update successful!");
+                    alert("Product update successful!");
+                    window.location.href = '/'; 
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error updating product:", error);
+                    alert("Error updating product: " + error);
+                }
+            });
+        });
+    });
+</script>
+
+
 {% endblock %}
