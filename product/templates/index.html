@@ -1,12 +1,4 @@
 {% extends 'base.html' %}
-
-
-{% block product_content %}
-{% if pro %}
-      <li><a href="{% url 'edit_product' 6 %}">Edit Product</a></li>
-      <li><a href="{% url 'delete_product' 6 %}">Delete Product</a></li>
-{% endif %}
-{% endblock %}
 {% block content %}
     <h1>Products</h1>
     <div class="row">
@@ -18,7 +10,8 @@
                 <div class="card-body">
                   <h5 class="card-title">{{i.name}}</h5>
                   <p class="card-text">${{i.price}}</p>
-                  <a href="#" class="btn btn-primary">Add to Cart</a>
+                  <a href="{% url 'edit_product' i.pk%}" class="btn btn-primary">Edit Product</a>            
+                  <a href="{% url 'delete_product' i.pk %}" class="btn btn-primary">Delete Product</a>
                 </div>
               </div>
         </div>
