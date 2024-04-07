@@ -2,15 +2,16 @@
 {% load static %}
 {% block content %}
 
-<form id="product-form" method="post">
+<form id="product-form1" method="post">
     {% csrf_token %}
     {{ form.as_p }}  
-    <button id="save-btn">Save</button>
+    <button id="save-btn1">Save</button>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'JS/edit_product.js' %}"></script>
-<script>var pk = "{{ pk }}";</script>
 
+<script src="{% static 'JS/edit_product.js' %}"></script>
+
+<script>var NewUrl = "{% url 'edit_product' pk %}";</script>
 
 
 {% endblock %}

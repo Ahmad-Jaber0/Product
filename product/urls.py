@@ -2,18 +2,16 @@ from django.urls import path,include
 from . import views
 from django.contrib.auth import views as auth_views
 from rest_framework.routers import DefaultRouter
-
+from django.conf import settings
+from django.conf.urls.static import static
 #router = DefaultRouter()
 #router.register('Product', views.viewsets_Product)
-
-
-
 urlpatterns = [
     path('', views.index, name='index'), 
     path('add-product/', views.AddProductAPIView.as_view(), name='add_product'),
     path('edit-product/<int:pk>/', views.EditProductAPIView.as_view(), name='edit_product'),
     path('delete-product/<int:pk>/', views.DeleteProductAPIView.as_view(), name='delete_product'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 '''
 urlpatterns = [
     path('home/', views.index, name='index'), 

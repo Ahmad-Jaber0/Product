@@ -7,10 +7,9 @@
     {% csrf_token %}
     <button id="save-btn">Delete</button>
 </form>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'JS/delete_product.js' %}"></script>
-<script>var pk = "{{ product.pk }}";</script>
-    
+<script>var x = "{% url 'delete_product' product.id %}";</script>
+<script>var csrfToken = "{{ csrf_token }}";</script>
 
 {% endblock %}

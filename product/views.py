@@ -55,8 +55,9 @@ class EditProductAPIView(APIView):
         serializer = ProductSerializer(product,data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
 class DeleteProductAPIView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
@@ -66,16 +67,17 @@ class DeleteProductAPIView(APIView):
             return Product.objects.get(pk=pk)
         except Product.DoesNotExist:
             raise Http404
+    
 
     def get(self, request, pk):
         product = self.get_object(pk)
         form = ProductForm(instance=product)
-        return Response({'form': form, 'product': product}, template_name='delete_product.html')
-    
+        return Response({'form': form, 'product': product}, template_name='delete_product.html')    
+
     def delete(self, request, pk):
         product = self.get_object(pk)
         product.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse({},status=status.HTTP_204_NO_CONTENT)    
     
 '''
 def add_product(request):

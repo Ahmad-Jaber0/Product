@@ -10,10 +10,10 @@ jQuery(document).ready(function($) {
         console.log("Form data:", formData);
 
         $.ajax({
-            url: "{% url 'delete_product' 0 %}".replace('0',pk),
+            url: x,
             type: 'DELETE',
             beforeSend: function(xhr) {
-                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                xhr.setRequestHeader("X-CSRFToken", csrfToken);
             },
             data: formData,
             success: function(response) {

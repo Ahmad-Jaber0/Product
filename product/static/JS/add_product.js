@@ -1,22 +1,21 @@
-
 jQuery(document).ready(function($) {
-    console.log("Document ready!"); 
-    
+    console.log("Document ready!");
+
     $('#save-btn').on('click', function(event) {
-        event.preventDefault(); 
-        
+        event.preventDefault();
+
         console.log("Button clicked!");
 
         var formData = $('#product-form').serialize();
-        console.log("Form data:", formData); 
+        console.log("Form data:", formData);
 
         $.ajax({
-            url: "{% url 'add_product' %}",
+            url: NewUrl, 
             type: 'POST',
             data: formData,
             success: function(response) {
                 console.log("Product added successfully!");
-                alert("Product added successfully!");
+                alert('Product added successfully!');
                 window.location.href = '/'; 
             },
             error: function(xhr, status, error) {
