@@ -1,2 +1,1 @@
-# Product 
-# First try
+# This is a simple task. I created a small part of a database for products, including functionality to add, update, or delete a product. I used Django and applied the concept of serializers. I didn't focus much on the frontend and used AJAX to interact with the API.
