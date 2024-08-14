@@ -1,1 +1,3 @@
-# This is a simple task. I created a small part of a database for products, including functionality to add, update, or delete a product. I used Django and applied the concept of serializers. I didn't focus much on the frontend and used AJAX to interact with the API.
+# Project Overview
+
+This project involves creating a basic product database with functionality to add, update, and delete products. Built with Django, it leverages serializers for efficient data handling. While the focus was on backend development, AJAX was used for API interaction, with minimal emphasis on the frontend.
